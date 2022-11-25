@@ -84,3 +84,25 @@ if($act=='cdn'){
     }
     echo '<title>'.count($lists).'</title>';
 }
+
+if($act=='grep'){
+    if(empty($_POST['domains'])){
+        exit('domains is empty!');
+    }
+    $textarea = trim($_POST['domains']);
+    $textarea = str_replace(',', PHP_EOL, $textarea);
+    $textarea = str_replace(';', PHP_EOL, $textarea);
+    $textarea = str_replace('|', PHP_EOL, $textarea);
+    $textarea = str_replace(' ', PHP_EOL, $textarea);
+    $lists = explode(PHP_EOL, $textarea);
+    $data = [];
+    if(!empty($lists)){
+        foreach ($lists as $item){
+            if(!empty(trim($item))){
+                $data [] = trim($item);
+            }
+        }
+    }
+    $message = implode('\|', $data);
+    echo json_encode(['message'=>$message]);
+}

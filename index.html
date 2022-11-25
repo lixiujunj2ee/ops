@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>DevOps</title>
 <style>body{background-color:#444;font-size:14px;}h3{font-size:60px;color:#eee;text-align:center;padding-top:30px;font-weight:normal;}.main{border:1pxsolid#dddff;padding:20px;background:#eee;text-align:center;}text{margin:0200px;}textarea{font-size:30px;color:#000}button{margin:1px200px;}</style>
+<script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
@@ -32,15 +33,39 @@
 
 <div class="main">
 <form action="cgi.php?act=cdn" name="frm-cdn" method="post">
-    <textarea rows="5%" cols="90%" name="domains" title="input list domain names"></textarea><br>
+    <textarea rows="5%" cols="90%" name="domains" title="input list domain names" id="domains_id"></textarea><br>
     <p><strong>yuai</strong>: 98.126.204.43</p>
     <p><strong>chun</strong>: 67.229.82.51  174.139.32.130</p>
     <input type="text" name="ip" value="67.229.82.51"> 
     <button type="submit">submit</button>
     <button type="reset">reset</button>
     cdn
+    <p><button type="button" id="grep_button">grep</button><input type="text" id="grep_text"/><button type="button" id="grep_copy">copy</button></p>
 </form>
 </div>
 
+<script type="text/javascript">
+$("#grep_button").click(function(){
+	var data = {domains:$("#domains_id").val()}; 
+	$.ajax({
+		  type: "POST",
+		  url: 'cgi.php?act=grep',
+		  data: data,
+		  type: 'post',
+        dataType: 'json',
+        success: function (res) {
+        $("#grep_text").val(res.message);
+        }
+		});
+});
+$("#grep_copy").click(function(){
+	const input = document.querySelector('#grep_text');
+   input.select();
+   if (document.execCommand('copy')) {
+       document.execCommand('copy');
+       console.log('复制成功');
+   }
+});
+</script>
 </body>
 </html>
