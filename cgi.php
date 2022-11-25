@@ -10,7 +10,6 @@ if($act=='crt'){
     }
     $textarea = trim($_POST['domains']);
     $lists = explode(PHP_EOL, $textarea);
-    echo '<title>'.count($lists).'</title>';
     $array_domains = [];
     if(!empty($lists)){
         foreach ($lists as $key=>$item){
@@ -19,21 +18,21 @@ if($act=='crt'){
             }
         }
     }
+    $array_domains = array_unique($array_domains);
+    echo '<title>'.count($array_domains).'</title>';
     if(!empty($array_domains)){
-        foreach ($array_domains as $k=>$i){
-            echo $i . (($k+1)%10 == 0 ? "<br><br/>" : " ");
-        }
-        echo "<br/>";
         echo "----------------------------------------------";
         echo "<br/><br/>";
         foreach ($array_domains as $k=>$i){
             echo $i .','. (($k+1)%10 == 0 ? "<br><br/>" : " ");
         }
+        echo "<br/><br/>";
         echo "----------------------------------------------";
         echo "<br/><br/>";
         foreach ($array_domains as $k=>$i){
             echo $i ."<br>". (($k+1)%10 == 0 ? "<br/>" : " ");
         }
+        echo "<br/><br/>";
     }
 }
 
@@ -75,6 +74,7 @@ if($act=='cdn'){
     $textarea = str_replace('|', PHP_EOL, $textarea);
     $textarea = str_replace(' ', PHP_EOL, $textarea);
     $lists = explode(PHP_EOL, $textarea);
+    $lists = array_unique($lists);
     if(!empty($lists)){
         foreach ($lists as $item){
             if(!empty(trim($item))){
@@ -95,6 +95,7 @@ if($act=='grep'){
     $textarea = str_replace('|', PHP_EOL, $textarea);
     $textarea = str_replace(' ', PHP_EOL, $textarea);
     $lists = explode(PHP_EOL, $textarea);
+    $lists = array_unique($lists);
     $data = [];
     if(!empty($lists)){
         foreach ($lists as $item){

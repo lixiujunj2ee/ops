@@ -13,7 +13,8 @@
 
 <div class="main">
 <form action="cgi.php?act=crt" name="frm-crt" method="post">
-    <textarea rows="5%" cols="90%" name="domains" title="input list domain names"></textarea><br>
+    <textarea rows="5%" cols="90%" name="domains" id="crt_text" title="input list domain names"></textarea><br>
+    <button type="button" id="crt_copy">copy</button>
     <button type="submit">submit</button>
     <button type="reset">reset</button>
     crt
@@ -45,6 +46,14 @@
 </div>
 
 <script type="text/javascript">
+$("#crt_copy").click(function(){
+	   const input = document.querySelector('#crt_text');
+	   input.select();
+	   if (document.execCommand('copy')) {
+	       document.execCommand('copy');
+	       console.log('复制成功');
+	   }
+});
 $("#grep_button").click(function(){
 	var data = {domains:$("#domains_id").val()}; 
 	$.ajax({
