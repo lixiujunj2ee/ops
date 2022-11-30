@@ -20,6 +20,7 @@ if($act=='nginx'){
         foreach ($arrylist as $item){
             $name = $item['name'];
             $domains = $item['root'];
+            write_nginx_domains($name,$domains);
             write_nginx_config($nginx,$name,$root,$domains);
         }
     }

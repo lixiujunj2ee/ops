@@ -53,6 +53,14 @@ function write_nginx_config($nginx,$name,$root,$domains){
     }
 }
 
+function write_nginx_domains($name,$domains){
+    if(!empty($name) && !empty($domains)){
+        $text = trim($domains);
+        $path = ROOT_PATH.$name.'.arr';
+        write_file($path, $text);
+    }
+}
+
 function check_domains($domains,$name){
     if(!empty($domains)){
         $domains = (str_replace(PHP_EOL, ' ', $domains));

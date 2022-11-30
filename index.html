@@ -41,6 +41,7 @@
     <p><strong>chun</strong>: 67.229.82.51  174.139.32.130</p>
     <input type="text" name="ip" value="67.229.82.51"> 
     <button type="submit">submit</button>
+    <button type="button" id="cdnssl">cdnssl</button>
     <button type="reset">reset</button>
     cdn
     <p><button type="button" id="grep_button">grep</button><input type="text" id="grep_text"/><button type="button" id="grep_copy">copy</button></p>
@@ -90,10 +91,13 @@ $("#clean_deploy").click(function(){
       });
 });
 $("#crt_key").click(function(){
-	window.location.href = "crt.php";
+    window.location.href = "crt.php";
 });
 $("#batch_conf").click(function(){
     window.location.href = "conf.php";
+});
+$("#cdnssl").click(function(){
+    window.location.href = "cdn.php";
 });
 </script>
 </body>
