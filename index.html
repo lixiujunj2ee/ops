@@ -39,12 +39,12 @@
     <textarea rows="5%" cols="90%" name="domains" title="input list domain names" id="domains_id"></textarea><br>
     <p><strong>yuai</strong>: 98.126.204.43</p>
     <p><strong>chun</strong>: 67.229.82.51  174.139.32.130</p>
-    <input type="text" name="ip" value="67.229.82.51"> 
+    <input type="text" name="ip" value=""> 
     <button type="submit">submit</button>
     <button type="button" id="cdnssl">cdnssl</button>
     <button type="reset">reset</button>
     cdn
-    <p><button type="button" id="grep_button">grep</button><input type="text" id="grep_text"/><button type="button" id="grep_copy">copy</button></p>
+    <p><button type="button" id="grep_button">grep</button><input type="text" id="grep_text"/><button type="button" id="grep_copy">copy</button><input type="text" id="domain_text"/><button type="button" id="domain_copy">copy</button></p>
     <p><span id="clean_message"></span><button type="button" id="clean_deploy">clean</button></p>
 </form>
 </div>
@@ -67,12 +67,21 @@ $("#grep_button").click(function(){
 		  type: 'post',
         dataType: 'json',
         success: function (res) {
-        $("#grep_text").val(res.message);
+        $("#grep_text").val(res.grep_message);
+        $("#domain_text").val(res.domain_message);
         }
 		});
 });
 $("#grep_copy").click(function(){
 	const input = document.querySelector('#grep_text');
+   input.select();
+   if (document.execCommand('copy')) {
+       document.execCommand('copy');
+       console.log('复制成功');
+   }
+});
+$("#domain_copy").click(function(){
+   const input = document.querySelector('#domain_text');
    input.select();
    if (document.execCommand('copy')) {
        document.execCommand('copy');

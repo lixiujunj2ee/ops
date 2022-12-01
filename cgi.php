@@ -108,8 +108,9 @@ if($act=='grep'){
             }
         }
     }
-    $message = implode('\|', $data);
-    echo json_encode(['message'=>$message]);
+    $grep_message = implode('\|', $data);
+    $domain_message = implode(' ', $data);
+    echo json_encode(['grep_message'=>$grep_message,'domain_message'=>$domain_message]);
 }
 
 if($act=='clean'){
