@@ -17,6 +17,7 @@ if(!empty(scandir($path))){
 
 
 ?>
+<link id="favicon" rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
 <link href="/css/main.css" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
 <title><?=count($root);?></title>

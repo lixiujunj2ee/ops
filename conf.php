@@ -39,7 +39,7 @@ if(!empty(scandir($path))){
     exec('cd '.$path.' && mv  nginx_conf.zip '.DEPLOY_PATH.' && rm -rf *.conf');
 }
 ?>
-
+<link id="favicon" rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
 <link href="/css/main.css" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
 <title><?=count($nginx_config)?></title>
